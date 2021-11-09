@@ -1,0 +1,41 @@
+
+#root {
+
+}
+
+
+#dragdrop-section {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+#iframe-div {
+    width: 900px;
+    margin: auto;
+}
+
+.template-iframe {
+    width: 100%;
+    height: 800px;
+}
+
+
+#buildingblocks-div {
+    width: 20%;
+    height: 500px;
+    
+    border: 1px solid black;
+
+    overflow-y: scroll;
+}
+
+
+.blockoption-div {
+    width: 100%;
+    height: 200px;
+
+    background-color: #dcdcdc;
+    margin-bottom: 10px;
+}
+
