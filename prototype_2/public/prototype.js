@@ -39,56 +39,163 @@ window.onload = function() {
             pages[i].addEventListener('drop', (e) => {
                 e.stopPropagation();
 
-                let data = JSON.parse(e.dataTransfer.getData('application/json'));
+                if(e.dataTransfer.getData('application/json')) {
+                    let data = JSON.parse(e.dataTransfer.getData('application/json'));
 
-                if(data) {
-                    if(data.name === 'table') {
-                        let newTable = iframe.contentWindow.document.createElement('table');
+                    if(data) {
+                        if(data.name === 'table') {
+                            let newTable = iframe.contentWindow.document.createElement('table');
 
-                        newTable.setAttribute('style', 'border: 1px solid black');
+                            newTable.setAttribute('draggable', true);
 
-                        newTable.innerHTML = '\
-                            <tr> \
-                                <td style="border: 1px solid black;"> \
-                                    data\
-                                </td> \
+                    
+                            newTable.addEventListener('dragover', (e) => {
+                                e.preventDefault();
+                    
+                                return false;
+                            });
+
+
+                            newTable.setAttribute('style', 'border: 1px solid black');
+
+                            newTable.innerHTML = '\
+                                <tr> \
+                                    <td style="border: 1px solid black;"> \
+                                        data\
+                                    </td> \
+                                    \
+                                    <td style="border: 1px solid black;"> \
+                                        data\
+                                    </td> \
+                                    \
+                                    <td style="border: 1px solid black;"> \
+                                        data\
+                                    </td> \
+                                </tr> \
                                 \
-                                <td style="border: 1px solid black;"> \
-                                    data\
-                                </td> \
-                                \
-                                <td style="border: 1px solid black;"> \
-                                    data\
-                                </td> \
-                            </tr> \
-                            \
-                            <tr> \
-                                <td style="border: 1px solid black;"> \
-                                    data\
-                                </td> \
-                                \
-                                <td style="border: 1px solid black;"> \
-                                    data\
-                                </td> \
-                                \
-                                <td style="border: 1px solid black;"> \
-                                    data\
-                                </td> \
-                            </tr> \
-                        ';
+                                <tr> \
+                                    <td style="border: 1px solid black;"> \
+                                        data\
+                                    </td> \
+                                    \
+                                    <td style="border: 1px solid black;"> \
+                                        data\
+                                    </td> \
+                                    \
+                                    <td style="border: 1px solid black;"> \
+                                        data\
+                                    </td> \
+                                </tr> \
+                            ';
 
-                        pages[i].appendChild(newTable);
-                    }else if(data.name === 'header') {
-                        let newHeader = iframe.contentWindow.document.createElement('h2');
+                            pages[i].appendChild(newTable);
+                        }else if(data.name === 'header') {
+                            let newHeader = iframe.contentWindow.document.createElement('h2');
 
-                        newHeader.innerHTML = 'Header';
+                            newHeader.setAttribute('draggable', true);
+                            
+                    
+                            newHeader.addEventListener('dragover', (e) => {
+                                e.preventDefault();
+                    
+                                return false;
+                            });
 
-                        pages[i].appendChild(newHeader);
-                    }else if(data.name === 'page') {
-                        let newPage = iframe.contentWindow.document.createElement('div');
-                        newPage.setAttribute('class', 'page');
 
-                        iframe.contentWindow.document.body.appendChild(newPage);
+                            newHeader.innerHTML = 'Header';
+
+                            pages[i].appendChild(newHeader);
+                        }else if(data.name === 'page') {
+                            let newPage = iframe.contentWindow.document.createElement('div');
+
+                            newPage.setAttribute('draggable', true);
+                            
+                    
+                            newPage.addEventListener('dragover', (e) => {
+                                e.preventDefault();
+                    
+                                return false;
+                            });
+
+                            newPage.addEventListener('drop', (e) => {
+                                e.stopPropagation();
+
+                                if(e.dataTransfer.getData('application/json')) {
+                                    let data = JSON.parse(e.dataTransfer.getData('application/json'));
+
+                                    if(data) {
+                                        if(data.name === 'table') {
+                                            let newTable = iframe.contentWindow.document.createElement('table');
+
+                                            newTable.setAttribute('draggable', true);
+
+                                    
+                                            newTable.addEventListener('dragover', (e) => {
+                                                e.preventDefault();
+                                    
+                                                return false;
+                                            });
+
+
+                                            newTable.setAttribute('style', 'border: 1px solid black');
+
+                                            newTable.innerHTML = '\
+                                                <tr> \
+                                                    <td style="border: 1px solid black;"> \
+                                                        data\
+                                                    </td> \
+                                                    \
+                                                    <td style="border: 1px solid black;"> \
+                                                        data\
+                                                    </td> \
+                                                    \
+                                                    <td style="border: 1px solid black;"> \
+                                                        data\
+                                                    </td> \
+                                                </tr> \
+                                                \
+                                                <tr> \
+                                                    <td style="border: 1px solid black;"> \
+                                                        data\
+                                                    </td> \
+                                                    \
+                                                    <td style="border: 1px solid black;"> \
+                                                        data\
+                                                    </td> \
+                                                    \
+                                                    <td style="border: 1px solid black;"> \
+                                                        data\
+                                                    </td> \
+                                                </tr> \
+                                            ';
+
+                                            newPage.appendChild(newTable);
+                                        }else if(data.name === 'header') {
+                                            let newHeader = iframe.contentWindow.document.createElement('h2');
+
+                                            newHeader.setAttribute('draggable', true);
+                                            
+                                    
+                                            newHeader.addEventListener('dragover', (e) => {
+                                                e.preventDefault();
+                                    
+                                                return false;
+                                            });
+
+
+                                            newHeader.innerHTML = 'Header';
+
+                                            newPage.appendChild(newHeader);
+                                        }
+                                    }
+                                }
+                            });
+
+
+                            newPage.setAttribute('class', 'page');
+
+                            iframe.contentWindow.document.body.appendChild(newPage);
+                        }
                     }
                 }
         
